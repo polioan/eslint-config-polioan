@@ -24,6 +24,7 @@ const config: Config = {
       {
         allowAny: false,
         allowRegExp: false,
+        allowNullish: false,
       },
     ],
     '@typescript-eslint/dot-notation': ['error'],
@@ -54,7 +55,7 @@ const config: Config = {
     ],
     '@typescript-eslint/switch-exhaustiveness-check': ['error'],
     '@typescript-eslint/no-unnecessary-boolean-literal-compare': ['error'],
-    '@typescript-eslint/strict-boolean-expressions': ['error'],
+    '@typescript-eslint/strict-boolean-expressions': ['warn'],
     '@typescript-eslint/no-meaningless-void-operator': ['error'],
     '@typescript-eslint/no-duplicate-type-constituents': ['error'],
     '@typescript-eslint/no-floating-promises': ['error'],
