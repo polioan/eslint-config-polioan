@@ -1,0 +1,113 @@
+{
+  "name": "eslint-config-polioan",
+  "version": "1.0.0",
+  "author": {
+    "name": "Ivan Polushin",
+    "url": "https://t.me/polioan"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/polioan/eslint-config-polioan"
+  },
+  "homepage": "https://github.com/polioan/eslint-config-polioan#readme",
+  "bugs": {
+    "url": "https://github.com/polioan/eslint-config-polioan/issues"
+  },
+  "funding": "https://boosty.to/polioan",
+  "keywords": [
+    "eslint",
+    "eslint-config",
+    "eslintconfig",
+    "code style",
+    "config",
+    "preset",
+    "polioan"
+  ],
+  "description": "Shared eslint config 'polioan'",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "commonjs",
+  "files": [
+    "common",
+    "configurations",
+    "types",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=15"
+  },
+  "engineStrict": true,
+  "scripts": {
+    "build": "npm run clear && tsup",
+    "clear": "rimraf types && rimraf common && rimraf configurations && rimraf pack",
+    "test:types": "tsc",
+    "test:unit": "vitest --dir \"test\" --run",
+    "test": "npm run test:types && npm run test:unit",
+    "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,cts,cjs,mjs,json,yml}\"",
+    "format:check": "prettier --check \"./**/*.{js,jsx,ts,tsx,cts,cjs,mjs,json,yml}\"",
+    "publish:dryrun": "npm publish --dry-run",
+    "check": "npm run format:check && npm run test && npm run publish:dryrun",
+    "pack": "rimraf pack && mkdir pack && npm pack --pack-destination pack"
+  },
+  "peerDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.2.1",
+    "@typescript-eslint/parser": "^6.2.0",
+    "eslint": "^8.46.0",
+    "eslint-plugin-jsdoc": "^46.4.5",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-react": "^7.33.1",
+    "eslint-plugin-security": "^1.7.1",
+    "eslint-plugin-spellcheck": "^0.0.20",
+    "eslint-plugin-typescript-enum": "^2.1.0",
+    "eslint-plugin-unicorn": "^48.0.1",
+    "eslint-plugin-validate-jsx-nesting": "^0.1.1"
+  },
+  "peerDependenciesMeta": {
+    "eslint": {
+      "optional": true
+    },
+    "@typescript-eslint/parser": {
+      "optional": true
+    },
+    "@typescript-eslint/eslint-plugin": {
+      "optional": true
+    },
+    "eslint-plugin-spellcheck": {
+      "optional": true
+    },
+    "eslint-plugin-typescript-enum": {
+      "optional": true
+    },
+    "eslint-plugin-validate-jsx-nesting": {
+      "optional": true
+    },
+    "eslint-plugin-jsx-a11y": {
+      "optional": true
+    },
+    "eslint-plugin-react": {
+      "optional": true
+    },
+    "eslint-plugin-jsdoc": {
+      "optional": true
+    },
+    "eslint-plugin-security": {
+      "optional": true
+    },
+    "eslint-plugin-unicorn": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/eslint": "^8.44.1",
+    "@types/node": "^20.4.5",
+    "prettier": "^3.0.0",
+    "rimraf": "^5.0.1",
+    "tsup": "^7.2.0",
+    "typescript": "^5.1.6",
+    "vitest": "^0.33.0"
+  }
+}
