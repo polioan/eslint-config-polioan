@@ -194,7 +194,6 @@ const typescriptEslintRules: Rules = {
   '@typescript-eslint/no-misused-new': ['error'],
   '@typescript-eslint/no-unused-expressions': ['error'],
   '@typescript-eslint/no-useless-constructor': ['error'],
-  '@typescript-eslint/no-use-before-define': ['error', { functions: false }],
   '@typescript-eslint/prefer-as-const': ['error'],
   '@typescript-eslint/no-unnecessary-type-constraint': ['error'],
   '@typescript-eslint/prefer-function-type': ['error'],
