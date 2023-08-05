@@ -13,8 +13,6 @@ npm i eslint @typescript-eslint/parser eslint-config-polioan
 ## Example .eslintrc.cjs
 
 ```js
-/* eslint-disable spellcheck/spell-checker */
-
 'use strict'
 
 const path = require('node:path')
@@ -22,6 +20,7 @@ const path = require('node:path')
 const {
   commonJsExtensions,
   esmExtensionsWhenTypeModule,
+  jsExtensions,
 } = require('eslint-config-polioan/common/constants')
 
 /** @type {import("eslint").Linter.Config} */
@@ -59,6 +58,16 @@ const config = {
     {
       files: esmExtensionsWhenTypeModule,
       extends: ['polioan/configurations/esmModules'],
+    },
+    {
+      files: jsExtensions,
+      extends: ['polioan/configurations/javascriptOnly'],
+    },
+    {
+      files: ['.eslintrc.cjs'],
+      rules: {
+        'spellcheck/spell-checker': ['off'],
+      },
     },
   ],
 }
@@ -121,3 +130,16 @@ Requires peer dependencies - @typescript-eslint/eslint-plugin
 ## Why I need types for eslint config? 
 
 Sometimes overrides are not working well, so I need a fallback in case I need manually resolve configuration and with types this activity will be faster.
+
+## References
+
+- https://eslint.org/docs/latest/rules
+- https://typescript-eslint.io/rules
+- https://www.npmjs.com/package/eslint-plugin-jsx-a11y
+- https://www.npmjs.com/package/eslint-plugin-react
+- https://www.npmjs.com/package/eslint-plugin-spellcheck
+- https://www.npmjs.com/package/eslint-plugin-typescript-enum
+- https://www.npmjs.com/package/eslint-plugin-validate-jsx-nesting
+- https://www.npmjs.com/package/eslint-plugin-jsdoc
+- https://www.npmjs.com/package/eslint-plugin-security
+- https://www.npmjs.com/package/eslint-plugin-unicorn
