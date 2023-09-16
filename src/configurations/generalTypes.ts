@@ -5,7 +5,7 @@ const config: Config = {
   rules: {
     '@typescript-eslint/prefer-nullish-coalescing': ['error'],
     '@typescript-eslint/no-unnecessary-type-assertion': ['error'],
-    '@typescript-eslint/no-misused-promises': ['error'],
+    '@typescript-eslint/no-misused-promises': ['warn'],
     '@typescript-eslint/no-unnecessary-condition': [
       'error',
       { allowConstantLoopConditions: true },
@@ -27,8 +27,8 @@ const config: Config = {
         allowNullish: false,
       },
     ],
-    '@typescript-eslint/dot-notation': ['error'],
-    '@typescript-eslint/require-await': ['error'],
+    '@typescript-eslint/dot-notation': ['warn'],
+    '@typescript-eslint/require-await': ['warn'],
     '@typescript-eslint/return-await': ['error', 'always'],
     '@typescript-eslint/no-implied-eval': ['error'],
     '@typescript-eslint/no-throw-literal': ['error'],
@@ -58,7 +58,7 @@ const config: Config = {
     '@typescript-eslint/strict-boolean-expressions': ['warn'],
     '@typescript-eslint/no-meaningless-void-operator': ['error'],
     '@typescript-eslint/no-duplicate-type-constituents': ['error'],
-    '@typescript-eslint/no-floating-promises': ['error'],
+    '@typescript-eslint/no-floating-promises': ['warn'],
     '@typescript-eslint/prefer-readonly': ['error'],
     '@typescript-eslint/prefer-reduce-type-parameter': ['error'],
     '@typescript-eslint/prefer-string-starts-ends-with': ['error'],
