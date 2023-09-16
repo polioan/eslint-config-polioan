@@ -1,0 +1,47 @@
+---
+interface Props {
+  href: string
+  level: 'warn' | 'error'
+  name: string
+}
+
+const { href, level, name } = Astro.props
+
+const onclick = 'this.parentNode.parentNode.toggleAttribute("data-marked")'
+---
+
+<div class='card flex-row d-flex card p-2 m-2' style={{ maxWidth: '600px' }}>
+  <span class='name'>{name}</span>
+  <div class='ms-auto d-flex justify-content-center align-items-center gap-2'>
+    <span
+      class:list={[
+        'badge',
+        level === 'warn' ? 'bg-warning text-dark' : 'bg-danger',
+      ]}
+    >
+      {level}
+    </span>
+    <a {href} target='_blank' rel='noopener noreferrer'>docs</a>
+    <input
+      class='form-check-input'
+      style={{ cursor: 'pointer' }}
+      type='checkbox'
+      title='Mark'
+      aria-label='Mark'
+      {onclick}
+    />
+  </div>
+</div>
+
+<style>
+  [data-marked] {
+    font-weight: 100;
+    background-color: #9ca1a6;
+  }
+
+  [data-marked] .name {
+    text-decoration: line-through;
+    text-decoration-color: #ff0000;
+    text-decoration-thickness: 0.1rem;
+  }
+</style>

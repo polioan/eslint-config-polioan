@@ -1,0 +1,16 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "npm run clear && astro check && tsc && astro build",
+    "build:nocheck": "npm run clear && astro build",
+    "clear": "rimraf dist --max-retries=20"
+  },
+  "devDependencies": {
+    "astro": "2.10.1",
+    "rimraf": "5.0.1"
+  }
+}

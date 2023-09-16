@@ -46,6 +46,6 @@
 
     "verbatimModuleSyntax": false
   },
-  "include": ["src", "test", "tsup.config.ts"],
+  "include": ["src", "test", "tsup.config.ts", ".prettierrc.js"],
   "exclude": ["node_modules"]
 }

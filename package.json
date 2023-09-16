@@ -45,18 +45,20 @@
     "build": "npm run clear && tsup",
     "clear": "rimraf types && rimraf common && rimraf configurations && rimraf pack",
     "test:types": "tsc",
-    "test:unit": "vitest --dir \"test\" --run",
+    "test:unit": "vitest --dir \"test\" --run --passWithNoTests",
     "test": "npm run test:types && npm run test:unit",
-    "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,cts,cjs,mjs,json,yml}\"",
-    "format:check": "prettier --check \"./**/*.{js,jsx,ts,tsx,cts,cjs,mjs,json,yml}\"",
+    "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,cts,cjs,mjs,json,yml,astro}\"",
+    "format:check": "prettier --check \"./**/*.{js,jsx,ts,tsx,cts,cjs,mjs,json,yml,astro}\"",
     "publish:dryrun": "npm publish --dry-run",
     "check": "npm run format:check && npm run test && npm run publish:dryrun",
     "pack": "rimraf pack && mkdir pack && npm pack --pack-destination pack"
   },
   "peerDependencies": {
-    "@typescript-eslint/eslint-plugin": "^6.2.1",
-    "@typescript-eslint/parser": "^6.2.0",
     "eslint": "^8.46.0",
+    "@typescript-eslint/parser": "^6.2.0",
+    "@types/eslint": "^8.44.1",
+    "@types/node": "^20.4.5",
+    "@typescript-eslint/eslint-plugin": "^6.2.1",
     "eslint-plugin-jsdoc": "^46.4.5",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-react": "^7.33.1",
@@ -67,6 +69,12 @@
     "eslint-plugin-validate-jsx-nesting": "^0.1.1"
   },
   "peerDependenciesMeta": {
+    "@types/eslint": {
+      "optional": true
+    },
+    "@types/node": {
+      "optional": true
+    },
     "eslint": {
       "optional": true
     },
@@ -105,9 +113,10 @@
     "@types/eslint": "^8.44.1",
     "@types/node": "^20.4.5",
     "prettier": "^3.0.0",
+    "prettier-plugin-astro": "^0.11.0",
     "rimraf": "^5.0.1",
-    "tsup": "^7.2.0",
-    "typescript": "^5.1.6",
-    "vitest": "^0.33.0"
+    "tsup": "7.2.0",
+    "typescript": "5.1.6",
+    "vitest": "0.33.0"
   }
 }
