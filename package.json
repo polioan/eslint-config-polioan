@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-polioan",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "author": {
     "name": "Ivan Polushin",
     "url": "https://t.me/polioan"
@@ -67,7 +67,8 @@
     "eslint-plugin-typescript-enum": "^2.1.0",
     "eslint-plugin-unicorn": "^48.0.1",
     "eslint-plugin-validate-jsx-nesting": "^0.1.1",
-    "eslint-plugin-css-modules": "^2.11.0"
+    "eslint-plugin-css-modules": "^2.11.0",
+    "eslint-plugin-react-hooks": "^4.6.0"
   },
   "peerDependenciesMeta": {
     "@types/eslint": {
@@ -110,6 +111,9 @@
       "optional": true
     },
     "eslint-plugin-css-modules": {
+      "optional": true
+    },
+    "eslint-plugin-react-hooks": {
       "optional": true
     }
   },

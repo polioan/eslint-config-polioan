@@ -26,7 +26,7 @@ export function definePlugin({
   prefix,
   docsLinkBuilder,
   rules,
-}: Plugin & { rules: string[] }): PluginWithRules {
+}: Plugin & { rules: [string, ...string[]] }): PluginWithRules {
   return { packageName, prefix, docsLinkBuilder, rules: toRulesObj(rules) }
 }
 

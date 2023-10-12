@@ -33,6 +33,7 @@ const config = {
     'polioan/configurations/regex',
     'polioan/configurations/spellcheck',
     'polioan/configurations/cssModules',
+    'polioan/configurations/react',
   ],
   env: {
     browser: true,
@@ -78,6 +79,7 @@ module.exports = config
 
 ## How to add configuration?
 - Install the necessary dependencies
+- Make sure that the dependencies are in the right place
 - If necessary - configure peerDependenciesMeta
 - Add configuration to src/configurations
 - Update the documentation in docs/src/plugins

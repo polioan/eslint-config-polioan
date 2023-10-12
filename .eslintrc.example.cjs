@@ -18,6 +18,7 @@ const config = {
     'polioan/configurations/regex',
     'polioan/configurations/spellcheck',
     'polioan/configurations/cssModules',
+    'polioan/configurations/react',
   ],
   env: {
     browser: true,
