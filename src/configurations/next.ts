@@ -1,7 +1,7 @@
 import type { Config } from '../types/config'
 
 const config: Config = {
-  plugins: ['next'],
+  plugins: [],
   rules: {
     '@next/next/google-font-display': ['warn'],
     '@next/next/google-font-preconnect': ['warn'],
