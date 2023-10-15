@@ -42,9 +42,13 @@ const keysOf = Object.keys as <T extends Record<string, unknown>>(
 ) => (keyof T)[]
 
 export function stripPrefix(ruleName: string) {
-  const name = ruleName.split('/')[1]
+  const splitted = ruleName.split('/')
+  const name = splitted[1]
   if (!name) {
     throw new Error(`Can't strip prefix, invalid rule name - ${ruleName}`)
+  }
+  if (splitted.length === 3 && ruleName.startsWith('@')) {
+    return splitted.at(-1)
   }
   return name
 }
@@ -111,6 +115,11 @@ function getPrefixFromRuleName(ruleName: string) {
     if (prefix) {
       return prefix
     }
+  }
+
+  if (length === 3 && ruleName.startsWith('@')) {
+    splitted.pop()
+    return splitted.join('/')
   }
 
   throw new Error(`Invalid rule name - ${ruleName}`)

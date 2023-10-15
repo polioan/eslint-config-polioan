@@ -1,4 +1,5 @@
 # eslint-config-polioan
+
 [![version](https://img.shields.io/npm/v/eslint-config-polioan)](https://www.npmjs.com/package/eslint-config-polioan)
 [![license](https://img.shields.io/github/license/polioan/eslint-config-polioan)](https://opensource.org/licenses/MIT)
 
@@ -34,6 +35,7 @@ const config = {
     'polioan/configurations/spellcheck',
     'polioan/configurations/cssModules',
     'polioan/configurations/react',
+    'polioan/configurations/next',
   ],
   env: {
     browser: true,
@@ -78,6 +80,7 @@ module.exports = config
 ```
 
 ## How to add configuration?
+
 - Install the necessary dependencies
 - Make sure that the dependencies are in the right place
 - If necessary - configure peerDependenciesMeta
