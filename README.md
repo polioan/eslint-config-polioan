@@ -20,7 +20,6 @@ const path = require('node:path')
 
 const {
   commonJsExtensions,
-  esmExtensionsWhenTypeModule,
   jsExtensions,
 } = require('eslint-config-polioan/common/constants')
 
@@ -58,10 +57,6 @@ const config = {
     {
       files: commonJsExtensions,
       extends: ['polioan/configurations/commonJS'],
-    },
-    {
-      files: esmExtensionsWhenTypeModule,
-      extends: ['polioan/configurations/esmModules'],
     },
     {
       files: jsExtensions,
