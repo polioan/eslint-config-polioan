@@ -2,10 +2,7 @@
 
 const path = require('node:path')
 
-const {
-  commonJsExtensions,
-  jsExtensions,
-} = require('eslint-config-polioan/common/constants')
+const { jsExtensions } = require('eslint-config-polioan/common/constants')
 
 /** @type {import("eslint").Linter.Config} */
 const config = {
@@ -39,7 +36,7 @@ const config = {
   rules: {},
   overrides: [
     {
-      files: commonJsExtensions,
+      files: ['*.cjs'],
       extends: ['polioan/configurations/commonJS'],
     },
     {
