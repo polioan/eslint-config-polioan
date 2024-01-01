@@ -115,7 +115,7 @@ const eslintRules: Rules = {
   'consistent-return': ['warn'],
   'dot-notation': ['warn'],
   'require-await': ['warn'],
-  'no-return-await': ['error'],
+  'no-return-await': ['warn'],
   'no-implied-eval': ['error'],
   'no-throw-literal': ['error'],
   'prefer-object-spread': ['warn'],
