@@ -35,7 +35,7 @@ const config: Config = {
     '@typescript-eslint/await-thenable': ['error'],
     '@typescript-eslint/no-base-to-string': ['warn'],
     '@typescript-eslint/no-confusing-void-expression': [
-      'error',
+      'warn',
       { ignoreArrowShorthand: true, ignoreVoidOperator: true },
     ],
     '@typescript-eslint/require-array-sort-compare': [
