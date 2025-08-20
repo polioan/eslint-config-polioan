@@ -296,15 +296,6 @@ const unicornRules: eslint.RulesRecord = {
   'unicorn/no-document-cookie': ['warn'],
   'unicorn/no-empty-file': ['error'],
   'unicorn/no-instanceof-array': ['error'],
-  'unicorn/filename-case': [
-    'warn',
-    {
-      cases: {
-        camelCase: true,
-        pascalCase: true,
-      },
-    },
-  ],
   'unicorn/no-new-buffer': ['error'],
   'unicorn/no-unnecessary-await': ['warn'],
   'unicorn/no-useless-length-check': ['error'],
