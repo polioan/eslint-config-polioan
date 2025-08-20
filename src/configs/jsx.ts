@@ -1,10 +1,15 @@
-import type { Rules, Config } from '../types/config'
+import { eslint, extensions } from '../helpers'
+// @ts-expect-error
+import validateJsxNestingPlugin from 'eslint-plugin-validate-jsx-nesting'
+// @ts-expect-error
+import jsxA11Plugin from 'eslint-plugin-jsx-a11y'
+import reactPlugin from 'eslint-plugin-react'
 
-const validateJsxNestingRules: Rules = {
+const validateJsxNestingRules: eslint.RulesRecord = {
   'validate-jsx-nesting/no-invalid-jsx-nesting': ['error'],
 }
 
-const jsxa11yRules: Rules = {
+const jsxa11yRules: eslint.RulesRecord = {
   'jsx-a11y/accessible-emoji': ['error'],
   'jsx-a11y/alt-text': ['error'],
   'jsx-a11y/anchor-has-content': ['error'],
@@ -44,11 +49,21 @@ const jsxa11yRules: Rules = {
   'jsx-a11y/control-has-associated-label': ['warn'],
 }
 
-const reactRules: Rules = {
-  'react/self-closing-comp': ['error', { html: false }],
+const reactRules: eslint.RulesRecord = {
+  'react/self-closing-comp': [
+    'error',
+    {
+      html: false,
+    },
+  ],
   'react/void-dom-elements-no-children': ['error'],
   'react/jsx-boolean-value': ['error'],
-  'react/jsx-filename-extension': ['error', { extensions: ['.jsx', '.tsx'] }],
+  'react/jsx-filename-extension': [
+    'error',
+    {
+      extensions: extensions.toFileExtensions(extensions.jsx),
+    },
+  ],
   'react/jsx-no-duplicate-props': ['error'],
   'react/jsx-no-script-url': ['error'],
   'react/jsx-no-target-blank': ['error'],
@@ -60,13 +75,24 @@ const reactRules: Rules = {
   'react/jsx-curly-brace-presence': ['error', 'never'],
 }
 
-const config: Config = {
-  plugins: ['validate-jsx-nesting', 'jsx-a11y', 'react'],
-  rules: {
-    ...validateJsxNestingRules,
-    ...jsxa11yRules,
-    ...reactRules,
+export const jsx: eslint.FlatConfig = [
+  {
+    files: extensions.toGlobs(extensions.jsts),
+    languageOptions: eslint.languageOptionsTypeScript,
+    settings: {
+      react: {
+        version: 'detect',
+      },
+    },
+    plugins: {
+      'validate-jsx-nesting': validateJsxNestingPlugin,
+      'jsx-a11y': jsxA11Plugin,
+      react: reactPlugin,
+    },
+    rules: {
+      ...validateJsxNestingRules,
+      ...jsxa11yRules,
+      ...reactRules,
+    },
   },
-}
-
-export = config
+]

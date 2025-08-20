@@ -1,18 +1,24 @@
 {
   "typescript.tsdk": "node_modules\\typescript\\lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
   "files.exclude": {
     "**/.git": true,
     "**/.svn": true,
     "**/.hg": true,
     "**/CVS": true,
     "**/.DS_Store": true,
-    "**/Thumbs.db": true,
-    "**/node_modules": true
+    "**/Thumbs.db": true
   },
   "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/*.code-search": true,
     "**/dist": true,
+    "**/coverage": true,
+    "**/logs": true,
     "**/package-lock.json": true,
     "LICENSE": true,
     "FUNDING.yml": true
-  }
+  },
+  "cSpell.words": ["polioan", "jsts"]
 }

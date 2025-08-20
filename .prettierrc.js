@@ -1,12 +1,16 @@
-/** @type {import("prettier").Config & { astroAllowShorthand?: boolean }} */
+'use strict'
+
+/**
+ * @type {import('prettier').Config & Record<string, any>}
+ */
 const config = {
-  plugins: [require.resolve('prettier-plugin-astro')],
+  plugins: [require.resolve('prettier-plugin-jsdoc')],
   useTabs: false,
   arrowParens: 'avoid',
   bracketSameLine: false,
   bracketSpacing: true,
   embeddedLanguageFormatting: 'auto',
-  endOfLine: 'auto',
+  endOfLine: 'lf',
   htmlWhitespaceSensitivity: 'css',
   insertPragma: false,
   jsxSingleQuote: true,
@@ -18,15 +22,8 @@ const config = {
   singleQuote: true,
   trailingComma: 'es5',
   tabWidth: 2,
-  astroAllowShorthand: true,
-  overrides: [
-    {
-      files: ['*.astro'],
-      options: {
-        parser: 'astro',
-      },
-    },
-  ],
+  tsdoc: true,
+  jsdocCommentLineStrategy: 'multiline',
 }
 
 module.exports = config

@@ -16,17 +16,13 @@ lerna-debug.log*
 
 node_modules
 dist
-.astro
+coverage
 *.local
 *.tsbuildinfo
 
 pack
 *.tgz
 *.txt
-
-/types
-/configurations
-/common
 
 .env
 .env.*

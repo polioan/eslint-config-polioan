@@ -1,8 +1,20 @@
-import type { Rules, Config } from '../types/config'
+import { eslint, extensions, toEs } from '../helpers'
+import tseslint from 'typescript-eslint'
+// @ts-expect-error
+import typescriptEnumPlugin from 'eslint-plugin-typescript-enum'
+// @ts-expect-error
+import securityPlugin from 'eslint-plugin-security'
+import unicornPlugin from 'eslint-plugin-unicorn'
 
-const eslintRules: Rules = {
+const eslintRules: eslint.RulesRecord = {
   'no-var': ['error'],
-  eqeqeq: ['error', 'always', { null: 'never' }],
+  eqeqeq: [
+    'error',
+    'always',
+    {
+      null: 'never',
+    },
+  ],
   'no-debugger': ['error'],
   camelcase: ['warn'],
   'no-self-compare': ['warn'],
@@ -17,33 +29,55 @@ const eslintRules: Rules = {
   'symbol-description': ['error'],
   'block-scoped-var': ['error'],
   'no-bitwise': ['warn'],
-  'new-cap': ['warn', { newIsCap: true, capIsNew: true, properties: true }],
   'no-new': ['error'],
   'use-isnan': [
     'error',
-    { enforceForSwitchCase: true, enforceForIndexOf: true },
+    {
+      enforceForSwitchCase: true,
+      enforceForIndexOf: true,
+    },
   ],
   'no-empty-pattern': ['error'],
-  'no-new-symbol': ['error'],
-  'no-new-object': ['error'],
+  'no-object-constructor': ['error'],
+  'no-new-native-nonconstructor': ['error'],
   'no-octal': ['error'],
   'no-octal-escape': ['warn'],
   'no-obj-calls': ['error'],
   'prefer-rest-params': ['error'],
   'no-script-url': ['error'],
-  'prefer-regex-literals': ['warn', { disallowRedundantWrapping: true }],
+  'prefer-regex-literals': [
+    'warn',
+    {
+      disallowRedundantWrapping: true,
+    },
+  ],
   'valid-typeof': ['error'],
   radix: ['error', 'always'],
   'no-duplicate-imports': ['error'],
-  'no-constant-condition': ['warn', { checkLoops: true }],
+  'no-constant-condition': [
+    'warn',
+    {
+      checkLoops: true,
+    },
+  ],
   'require-yield': ['error'],
   'getter-return': ['error'],
   'no-new-wrappers': ['error'],
-  'no-new-native-nonconstructor': ['error'],
   'no-useless-rename': ['error'],
   'one-var': ['error', 'never'],
-  'no-useless-computed-key': ['error', { enforceForClassMembers: true }],
-  'object-shorthand': ['error', 'always', { avoidExplicitReturnArrows: true }],
+  'no-useless-computed-key': [
+    'error',
+    {
+      enforceForClassMembers: true,
+    },
+  ],
+  'object-shorthand': [
+    'error',
+    'always',
+    {
+      avoidExplicitReturnArrows: true,
+    },
+  ],
   'no-return-assign': ['error'],
   'no-proto': ['error'],
   'no-useless-concat': ['error'],
@@ -75,11 +109,21 @@ const eslintRules: Rules = {
   'no-import-assign': ['error'],
   'prefer-exponentiation-operator': ['error'],
   'no-sparse-arrays': ['error'],
-  'no-implicit-coercion': ['error', { disallowTemplateShorthand: true }],
+  'no-implicit-coercion': [
+    'error',
+    {
+      disallowTemplateShorthand: true,
+    },
+  ],
   'no-ex-assign': ['error'],
   'no-empty-static-block': ['error'],
   'no-dupe-else-if': ['error'],
-  'no-empty': ['error', { allowEmptyCatch: true }],
+  'no-empty': [
+    'error',
+    {
+      allowEmptyCatch: true,
+    },
+  ],
   'no-duplicate-case': ['error'],
   'no-const-assign': ['error'],
   'constructor-super': ['error'],
@@ -99,16 +143,23 @@ const eslintRules: Rules = {
   'prefer-arrow-callback': ['warn'],
   'no-unsafe-optional-chaining': [
     'warn',
-    { disallowArithmeticOperators: true },
+    {
+      disallowArithmeticOperators: true,
+    },
   ],
   'no-unreachable-loop': ['warn'],
   'no-unreachable': ['error'],
   'no-unsafe-finally': ['error'],
   'no-useless-call': ['error'],
-  'prefer-destructuring': ['warn', { object: true, array: false }],
+  'prefer-destructuring': [
+    'warn',
+    {
+      object: true,
+      array: false,
+    },
+  ],
   'no-this-before-super': ['error'],
   'no-promise-executor-return': ['error'],
-  'new-parens': ['error'],
   'no-async-promise-executor': ['error'],
   'no-constant-binary-expression': ['warn'],
   'no-implicit-globals': ['error'],
@@ -125,22 +176,27 @@ const eslintRules: Rules = {
   'no-unmodified-loop-condition': ['warn'],
 }
 
-const typescriptEslintRules: Rules = {
+const typescriptEslintRules: eslint.RulesRecord = {
   '@typescript-eslint/no-array-constructor': ['error'],
   '@typescript-eslint/default-param-last': ['error'],
   '@typescript-eslint/no-empty-function': ['error'],
   '@typescript-eslint/no-dupe-class-members': ['error'],
   '@typescript-eslint/no-invalid-this': ['error'],
   '@typescript-eslint/no-loop-func': ['warn'],
-  '@typescript-eslint/no-loss-of-precision': ['error'],
+  'no-loss-of-precision': ['error'],
   '@typescript-eslint/no-redeclare': [
     'error',
-    { ignoreDeclarationMerge: false },
+    {
+      ignoreDeclarationMerge: false,
+    },
   ],
   '@typescript-eslint/adjacent-overload-signatures': ['error'],
   '@typescript-eslint/array-type': [
     'error',
-    { default: 'array', readonly: 'array' },
+    {
+      default: 'array',
+      readonly: 'array',
+    },
   ],
   '@typescript-eslint/ban-ts-comment': [
     'error',
@@ -152,7 +208,9 @@ const typescriptEslintRules: Rules = {
     },
   ],
   '@typescript-eslint/ban-tslint-comment': ['error'],
-  '@typescript-eslint/ban-types': ['warn'],
+  '@typescript-eslint/no-empty-object-type': ['warn'],
+  '@typescript-eslint/no-unsafe-function-type': ['warn'],
+  '@typescript-eslint/no-wrapper-object-types': ['warn'],
   '@typescript-eslint/consistent-generic-constructors': [
     'error',
     'constructor',
@@ -168,7 +226,9 @@ const typescriptEslintRules: Rules = {
   ],
   '@typescript-eslint/explicit-member-accessibility': [
     'error',
-    { overrides: { constructors: 'no-public' } },
+    {
+      overrides: { constructors: 'no-public' },
+    },
   ],
   '@typescript-eslint/method-signature-style': ['error', 'property'],
   '@typescript-eslint/naming-convention': [
@@ -184,9 +244,13 @@ const typescriptEslintRules: Rules = {
   ],
   '@typescript-eslint/triple-slash-reference': ['warn'],
   '@typescript-eslint/unified-signatures': ['warn'],
-  '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+  '@typescript-eslint/no-unused-vars': [
+    'error',
+    {
+      argsIgnorePattern: '^_',
+    },
+  ],
   '@typescript-eslint/no-dynamic-delete': ['warn'],
-  '@typescript-eslint/no-empty-interface': ['error'],
   '@typescript-eslint/no-explicit-any': ['warn'],
   '@typescript-eslint/no-extra-non-null-assertion': ['error'],
   '@typescript-eslint/no-import-type-side-effects': ['error'],
@@ -204,11 +268,11 @@ const typescriptEslintRules: Rules = {
   '@typescript-eslint/no-this-alias': ['warn'],
 }
 
-const typescriptEnumRules: Rules = {
+const typescriptEnumRules: eslint.RulesRecord = {
   'typescript-enum/no-enum': ['error'],
 }
 
-const securityRules: Rules = {
+const securityRules: eslint.RulesRecord = {
   'security/detect-bidi-characters': ['warn'],
   'security/detect-buffer-noassert': ['warn'],
   'security/detect-child-process': ['warn'],
@@ -223,7 +287,7 @@ const securityRules: Rules = {
   'security/detect-possible-timing-attacks': ['warn'],
 }
 
-const unicornRules: Rules = {
+const unicornRules: eslint.RulesRecord = {
   'unicorn/consistent-destructuring': ['warn'],
   'unicorn/custom-error-definition': ['error'],
   'unicorn/error-message': ['error'],
@@ -251,7 +315,12 @@ const unicornRules: Rules = {
   'unicorn/prefer-array-flat-map': ['error'],
   'unicorn/prefer-date-now': ['error'],
   'unicorn/prefer-default-parameters': ['error'],
-  'unicorn/prefer-export-from': ['error', { ignoreUsedVariables: true }],
+  'unicorn/prefer-export-from': [
+    'error',
+    {
+      ignoreUsedVariables: true,
+    },
+  ],
   'unicorn/prefer-modern-math-apis': ['error'],
   'unicorn/prefer-node-protocol': ['error'],
   'unicorn/prefer-optional-catch-binding': ['error'],
@@ -267,15 +336,22 @@ const unicornRules: Rules = {
   'unicorn/throw-new-error': ['warn'],
 }
 
-const config: Config = {
-  plugins: ['@typescript-eslint', 'typescript-enum', 'security', 'unicorn'],
-  rules: {
-    ...eslintRules,
-    ...typescriptEslintRules,
-    ...typescriptEnumRules,
-    ...securityRules,
-    ...unicornRules,
+export const general: eslint.FlatConfig = [
+  {
+    files: extensions.toGlobs(extensions.jsts),
+    languageOptions: eslint.languageOptionsTypeScript,
+    plugins: {
+      '@typescript-eslint': tseslint.plugin,
+      'typescript-enum': typescriptEnumPlugin,
+      security: securityPlugin,
+      unicorn: toEs(unicornPlugin),
+    },
+    rules: {
+      ...eslintRules,
+      ...typescriptEslintRules,
+      ...typescriptEnumRules,
+      ...securityRules,
+      ...unicornRules,
+    },
   },
-}
-
-export = config
+]
